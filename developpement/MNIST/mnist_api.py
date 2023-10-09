@@ -10,9 +10,13 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 app = Flask(__name__)
 
-parser = ... 
-... # add an argument '--model_path'
-model_path = ...
+parser =  argparse.ArgumentParser()  
+
+parser.add_argument('--model_path',type=str,default='weights/mnist_net.pth',help='model path')
+
+args= parser.parse_args()
+
+model_path = args.model_path
 
 model = MNISTNet().to(device)
 # Load the model
